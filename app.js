@@ -81,7 +81,7 @@
       const btn=node('button',String(date),'day');btn.type='button';btn.dataset.day=String(d);btn.setAttribute('aria-label',`Read ${months[m]} ${date}, ${year}`);
       btn.addEventListener('click',()=>{loadDay(d);location.hash='devotion';});calendar.append(btn);
     }
-    refreshSelection();
+    document.querySelectorAll('#calendarDays .day').forEach(btn=>{const active=Number(btn.dataset.day)===selectedDay;btn.classList.toggle('selected',active);btn.setAttribute('aria-current',active?'date':'false');});
   }
   months.forEach((month,i)=>{const btn=node('button',month,'month');btn.type='button';btn.addEventListener('click',()=>showMonth(i));$('months').append(btn);});
   showMonth(selectedMonth);
